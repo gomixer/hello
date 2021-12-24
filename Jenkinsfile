@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'go build'
+                withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
+                    sh 'go version'
+                }
             }
         }
         stage('Test') {
